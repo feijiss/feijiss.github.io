@@ -7,9 +7,10 @@
 	<body>
 		
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		
+		 
 		<div id="app">
 			<input type="text" v-on:keyup.enter="click" v-model="message" placeholder="输入便签" autofocus="autofocus"  />
+			<a href="index.html">跳转回第一个页面</a>
 				<li v-for="(value,index) in textArr" style="border: solid 0.0625rem lightgray;" >
 					{{index+1}}.      {{value}}
 					
@@ -28,7 +29,7 @@
 		
 		
 		<script>
-<a href="index.html">跳转回第一个页面</a>
+
 
 			var app=new Vue({
 				el:"#app",
