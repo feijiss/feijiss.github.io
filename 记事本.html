@@ -9,7 +9,6 @@
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		
 		<div id="app">
-			<a href="index.html">跳转回第一个页面</a>
 			<input type="text" v-on:keyup.enter="click" v-model="message" placeholder="输入便签" autofocus="autofocus"  />
 				<li v-for="(value,index) in textArr" style="border: solid 0.0625rem lightgray;" >
 					{{index+1}}.      {{value}}
@@ -27,7 +26,10 @@
 		</div>
 		
 		
+		
 		<script>
+<a href="index.html">跳转回第一个页面</a>
+
 			var app=new Vue({
 				el:"#app",
 				data:{
