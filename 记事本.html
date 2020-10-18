@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		
+		<div id="app">
+			<input type="text" v-on:keyup.enter="click" v-model="message" placeholder="输入便签" autofocus="autofocus"  />
+				<li v-for="(value,index) in textArr" style="border: solid 0.0625rem lightgray;" >
+					{{index+1}}.      {{value}}
+					
+					<button  @click="remove(index)" style="background: #0000; border:none" v-model="index"  >x</button>
+					<input type="checkbox"  v-on:click="wancheng"  />
+					
+					
+				</li>
+			<footer style="background: lightgray
+			; border:  solid 0.0625rem black;" >{{textArr.length}}
+			<button @click="qingkong" v-show="textArr.length!=0" >清空</button>
+			</footer>
+			 
+		</div>
+		
+		
+		<script>
+			var app=new Vue({
+				el:"#app",
+				data:{
+					textArr:["中国","美国","英国","法国","加拿大","新西兰","新加坡","越南","韩国"],
+					message:"",
+					isButton:false,
+					wc:"",
+					xindex:"",
+					
+					
+				
+			// methods:{
+			// 	click:function(){
+			// 		this.textArr.push(this.message);
+			// 		console.log("sd")
+			// 		this.message="";
+			// 		console.log(this.textArr)
+			// 	},
+			// }
+				},
+				methods:{
+					click:function(){
+						this.textArr.push(this.message);
+						console.log("sd")
+						this.message="";
+						//console.log(this.textArr)
+					},
+					remove:function(index){//穿参数 是数组下标，根据下标来删除元素
+						this.textArr.splice(index,1);//代表从index 开始删除1个元素
+						console.log(index)
+					},
+					setButton:function(){
+						this.isButton=!this.isButton;
+					},
+					wancheng:function(){
+						this.wc="已完成";
+						console.log(this.wancheng)
+						console.log("已完成")
+					},
+					qingkong:function(){
+						this.textArr=[];
+						console.log(this.textArr)
+					}
+					
+				}
+				
+			})
+		</script>
+	</body>
+</html>
