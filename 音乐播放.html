@@ -10,7 +10,7 @@
 		<div id="app" >
 <div style="float: left;">
 <input type="text"  v-model="name" @keyup.enter="enter" placeholder="搜索"   />
-
+<button v-on:click="enter" >播放</button>
 <li v-for="item in yyname">
 <button v-on:click="playMusic(item.id)"  >播放</button>
 
