@@ -7,7 +7,21 @@
 	<body>
 		 
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-		 
+		 <!-- //网页访问次数 -->
+		 <script>
+		 	
+		 	if (localStorage.pagecount)
+		 		{
+		 		localStorage.pagecount=Number(localStorage.pagecount) +1;
+		 		}
+		 	else
+		 		{
+		 		localStorage.pagecount=1;
+		 		}
+		 	// document.write("Visits: " + localStorage.pagecount + " time(s).");
+		 	document.write("网页访问次数"+localStorage.pagecount);
+		 </script>
+		 <!-- 网页访问次数 -->
 		<div id="app">
 			<input type="text" v-on:keyup.enter="click" v-model="message" placeholder="输入便签" autofocus="autofocus"  />
 			<a href="index.html">跳转回第一个页面</a>
