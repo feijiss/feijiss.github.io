@@ -2,30 +2,134 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>javascript</title>
-		<!--src="./script.js"是可以引用外部的javascript文件-->
-		<!-- <script type="text/javascript" src="./script.js"></script>可以有多个script标签 -->
-		<script type="text/javascript" >
-			alert("第一个js页面");//页面弹出警告
-			document.write("在文档写入东西！！！");
-			console.log("我在控制台出现");
-			//变量名可以是字母.数字，下划线 $
-			var a="吴";//声明变量的
-			document.write(a);
-			console.log(typeof a);//typeof a 是返回变量的类型
-			
-			var b=456; 
-			 b = String(b);
-			 console.log(typeof b);
-			 // 将其他数据类型转换为String Number同理
-			 var c="200px";
-			 c = parseInt(c);//将字符串（有数字和非数字的就只要数字）
-			 console.log(c);
-		</script>
+		<title></title>
+	<style type="text/css">
+		
+		.ima{
+			border: solid 0.125rem blue;
+		}
+	</style>
 	</head>
+	
 	<body>
-		<a href="记事本.html">跳转</a> 
-		<!-- 在onclick里面可以写js代码 -->
-		<button onclick="alert('吴清警!!!')">点我一下咯！</button><!-- /嵌套的里面要用单引号 -->
-	</body>
+		
+		
+		<div id="app">
+			<p>{{message}}</p>
+			<span>{{ school.name }}</span>
+			<ul>
+				<li>{{color[0] }}</li>
+				 <!-- v-text vue指令 -->
+				<li v-text="school.PhoneNum+'!!!'"></li>
+				<li v-html="html"></li><!--v-html会解析其中的html格式的代码-->
+				  <!-- v-on绑定事件       可以用这个替代@click="tanchu" -->
+				<li> <input type="button" value="点击弹出框" v-on:click="tanchu" />   </li>
+				<li> <input type="button" value="点击弹出框" @click="tanchu" />   </li>
+				<li> <input type="button" value="双击弹出框" @dblclick="tanchu" />   </li>
+				<li> <input type="button" value="触摸弹出框" @mouseenter="tanchu" />   </li>
+				<li> <input type="text" v-model="value" />  <input type="button" value="点击更改message" v-on:click="setMessage" />  </li>
+			</ul>
+			
+			<div style="color:sandybrown;" >
+				<button v-on:click="sub" style="width: 3rem;" >-</button>
+			    <span v-text="num" ></span>
+	            <button v-on:click="add" style="width: 3rem;"  > +</button>
+				<!-- v-bind 是绑定属性的 可以-->
+				<img :src="imageArray[0]" height="200px" v-show="num>5" title="nba球星云集"
+				 :class="{ima:isIma}" v-on:click="djIma"  /><!-- v-show是设 置组件显示不显示的 v-if和他是一样的 ，但是前者是控制样式，后者是控制元素存不存在-->
+				<!-- v-on:keyup.enter点击回车才触发事件 -->
+				<!-- v-model双向绑定数据 -->
+               <input type="text" v-on:keyup.enter="enter(456456)" v-model="data"  /><!-- enter(456456)  括号里面是方法传的参数 -->
+			</div>
+		
+			<ul>
+				<input type="button" value="增加数据" v-on:click="addValue" />
+				<input type="button" value="删除数据" v-on:click="removeValue" />
+		
+				<!-- v-for="value in color" 语法是 value是数组元素是代称 可以叫任意名字 in 是固定的 color是数组的名字 
+				  {{value}} 这个就是输出数组的元素，与上面设置的要对应-->
+				<li v-for="value in color" >{{value}}</li>
+				<!-- <li v-for="(value,index) in color" >{{index}}{{value}}</li> --><!-- 还可以这样 index就是数组的下标 -->
+							<ul v-for="value in arr" >{{value.name}}</ul>
+			</ul>
+		
+
+		</div>
+		
+		<!-- <script src="vue.js"></script> -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	
+		<script>
+		var app=new Vue({
+		el:'#app',
+		data:{
+			message:'Hello World', 
+			num:1,
+			isIma:true,
+			data:'',
+			pathIma:"./nba.jpg",
+			html:"<button>HTML按钮</button>",
+			school:{
+				name:"吴清警",
+				PhoneNum:"123456789"
+				
+			},
+			color:["red","blue","black","green"],
+			imageArray:[
+				"./image/nba.jpg"
+			],
+			arr:[{name:"123"},{name:"456"}]//数组里面放对象
+		
+		
+		},
+	// 只可以在这里面写方法
+		methods:{
+			tanchu:function(){
+				alert("我giao")
+				// document.write("在文档写入东西！！！");
+			},
+				
+			setMessage:function(){
+				//用了v-model 就可以用this. 来获取输入框中的数据
+				this.message=this.value
+			},
+			
+			add:function(){
+				if(this.num<10){
+					this.num++
+				}else{
+					alert("最大了！")
+				}
+				
+			},
+			
+			sub:function(){
+			if(this.num>1){
+				this.num--
+			}else{
+				alert("最小了！")
+			}
+			},
+				
+			djIma:function(){
+				this.isIma=!this.isIma;
+				console.log(this.isIma);
+			}, 
+			
+				addValue:function(){
+					this.arr.push({name:"红色"});//push 是在末尾添加元素
+					console.log(this.color);
+					console.log("sss")
+				},
+				removeValue:function(){
+					this.arr.shift(); //从左边移除元素
+				},
+				enter:function(v1){//v1 是形参
+					alert("提交成功:"+"\n"+this.data)
+				}
+			}
+			})
+			
+		</script>
+		</body>
 </html>
