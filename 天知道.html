@@ -5,14 +5,31 @@
 		<title></title>
 	</head>
 	<body>
+		
 		<style type="text/css">
 			
 			.li1{
 				float: left;
 			}
 		</style>
+		
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<!-- //网页访问次数 -->
+		<script>
+			
+			if (localStorage.pagecount)
+				{
+				localStorage.pagecount=Number(localStorage.pagecount) +1;
+				}
+			else
+				{
+				localStorage.pagecount=1;
+				}
+			// document.write("Visits: " + localStorage.pagecount + " time(s).");
+			document.write("网页访问次数"+localStorage.pagecount);
+		</script>
+		<!-- 网页访问次数 -->
 		<div id="app" >
 			
 				<div style="background-color: blanchedalmond; border: solid blueviolet 0.3125rem;" >
