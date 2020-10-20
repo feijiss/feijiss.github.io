@@ -5,6 +5,21 @@
 		<title></title>
 	</head>
 	<body>
+		<!-- //网页访问次数 -->
+		<script>
+			
+			if (localStorage.pagecount)
+				{
+				localStorage.pagecount=Number(localStorage.pagecount) +1;
+				}
+			else
+				{
+				localStorage.pagecount=1;
+				}
+			// document.write("Visits: " + localStorage.pagecount + " time(s).");
+			document.write("网页访问次数"+localStorage.pagecount);
+		</script>
+		<!-- 网页访问次数 -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		<div id="app" >
