@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<style type="text/css">
+			
+			.li1{
+				float: left;
+			}
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<div id="app" >
+			
+				<div style="background-color: blanchedalmond; border: solid blueviolet 0.3125rem;" >
+					<a href="index.html">第一个页面</a>
+				</div>
+			<input type="text" @keyup.enter="enter" v-model="city"  placeholder="请输入城市名"/>
+			<ul>
+				<li class="li1" v-for="item in cityArr" >
+				
+				
+				<div style="border: antiquewhite solid 0.125rem; text-align: center; " >
+					<h3 style="background-color: gray;" >{{item.date}}</h3>
+					<h1>{{item.type}}</h1>
+					<h2>{{item.high}} {{item.low}}</h2>
+				</div>
+				</li>
+			</ul>
+			
+		</div>
+		<script>
+			var app=new Vue({
+				el:"#app",
+				data:{
+					city:'',
+					cityArr:[]
+					
+				},
+				methods:{
+			enter:function(){
+				
+				console.log("点击了")
+				var that=this
+				axios.get("http://wthrcdn.etouch.cn/weather_mini?city="+this.city).
+				then(response =>{
+					that.cityArr=response.data.data.forecast;
+					//console.log(response.data.data.forecast)
+					
+					
+				}) 
+					}
+				}
+			})
+			
+		</script>
+	</body>
+</html>
