@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<style type="text/css">
+body{
+/* 	background: #FFE4C4; */
+}
+h{
+color:;
+text-align: left;
+size: a4;
+font-family: "华文行楷"; 
+font-weight: 1000;/* 设置粗细的*/
+padding-top: 10px;
+font-size: 30px;
+margin-left: 40px;
+}	
+p{
+color: bisque;
+text-align: right;
+font-family: "楷体";
+margin-right: 20px;
+font-size: 20px;
+}
+/* div{
+background-image: url(image/背景.jpg);
+} */
+
+.flex-container{
+background-image: url(image/背景.jpg);
+
+height: 200px;
+}
+.item{
+display: flex; justify-content: space-between;
+background-color: #2e87d7;
+font-size: 1.5rem;
+height: 50px;
+color: #F7F7F7;
+line-height: 50px;/*这两个是让按钮居中的*/
+vertical-align:content;/*这两个是让按钮居中的*/
+margin-left: 0.5125rem;
+box-shadow: 2px 2px 5px #000;
+}
+button{
+background-color: royalblue;
+border: none;/*去掉按钮的边框的*/
+font-weight: 500;
+color: aliceblue;
+}
+.button1{
+border: none;/*去掉按钮的边框的*/
+background-color: gainsboro;
+color: #4169E1;
+font-weight: 800;
+}
+.a{
+margin-top:1rem;
+margin-left: 0.125rem;
+background-color: #F0F8FF;
+height: 2rem;
+width: 12.5rem;
+/* border:2px solid #f7f7f7; *//* div四周加边框 */
+border-top: 0.125rem solid   #000000;
+border-left: 0.125rem solid  #000000;
+border-right: 0.125rem solid #000000;
+/* 加边框阴影的 */
+
+}
+.b{
+background-color: white;
+height: 15rem;
+width:12.5rem;
+margin-left: 0.125rem;
+/* brorder:2px solid #f7f7f7; */
+
+/* div四周加边框 */
+border-right:0.125rem solid #000000;
+border-left: 0.125rem solid #000000;
+border-bottom: 0.125rem solid #000000;
+
+}
+
+.c{
+float:left;
+height: 2rem;
+width: 90%;
+line-height: 2rem;
+vertical-align:content;
+
+}
+.d{
+
+width:85%;
+height: 20rem;
+margin-left: 19.85rem;
+margin-top: 3rem;
+box-shadow: darkgrey 2px 2px 5px 1px ;//边框阴影
+}
+
+.e{
+background: #000000;
+
+height: 15rem;
+width:12.5rem;
+
+}
+
+.e1{
+background-color: #4169E1;
+
+height: 15rem;
+width:12.5rem;
+}
+p1{
+color: #4169E1;
+font-weight: 700;
+text-align: center;
+line-height: 2rem;/*这两个是居中的 盒子的height是多少这里就设置多少*/
+vertical-align:content;/*这两个是居中的*/
+}
+.button2{
+background-color: #BBBBBB;
+background: #00aaff;
+margin: 0.125rem;  width: 24rem; font-size: 2rem;
+}
+
+
+</style>
+<!-- <script type="text/javascript">
+// JS实现选项卡切换
+window.onload = function(){
+var myTab = document.getElementById("tab");    //整个div
+var myUl = myTab.getElementsByTagName("ul")[0];//一个节点
+var myLi = myUl.getElementsByTagName("li");    //数组
+var myDiv = myTab.getElementsByTagName("div"); //数组
+
+for(var i = 0; i<myLi.length;i++){
+myLi[i].index = i;
+myLi[i].onclick = function(){
+for(var j = 0; j < myLi.length; j++){
+ myLi[j].className="off";
+ myDiv[j].className = "hide";
+}
+this.className = "on";
+myDiv[this.index].className = "show";
+}
+}
+}
+</script> -->
+</head>
+
+<body>
+<div class="flex-container">
+
+
+<b><h>正方软件</h></b><!-- <b></b>是加粗-->
+<p>科技创新   服务教育</p>
+<div style="" class="item">
+
+<div><a  style="color: #FFFFFF;" href="#">首页</a></div>
+<div> <a  style="color: #FFFFFF;" href="#">学校介绍</a></div>
+<div><a style="color: #FFFFFF;" href="#">综合服务</a></div>
+<div> <a style="color: #FFFFFF;" href="#">招聘信息</a></div>
+<div> <a style="color: #FFFFFF;" href="#">就业政策</a></div>
+<div> <a  style="color: #FFFFFF;"href="#">创新创业</a></div>
+<div> <a style="color: #FFFFFF;" href="#">生涯教育</a></div>
+<div style="margin-right: 25rem;"> <a  style="color: #FFFFFF;"href="#">用人单位专栏</a></div>
+
+</div>
+
+</div>
+
+<div id="app" style="display: flex;  height: 100%; flex-wrap:wrap;" class="aa">
+
+
+<div style=" float: left;width: 10%; " >
+<div class="a">
+<p1>用户登录</p1>
+
+</div>
+<div class="b">
+
+</div>
+</div>
+
+<div >
+	
+	<div style="margin-top: 0.7125rem; width: 80%; flex: 1; width: 118.5rem; height: 18.25rem;">
+		<div style="height: 25rem; border: #000000 0.125rem solid;	">
+			<div style="background-color: #336699;">
+			<button style="font-size: 1.5rem;" v-on:click=" Click5 " v-bind:class="is5?'button1':''"  type="button">招聘信息</button>
+			<button style="font-size: 1.5rem; margin-left: 5rem;"  v-on:click=" Click6 " v-bind:class="is6?'button1':''"   type="button">实习实训信息</button>
+			<p1><a href="#" style="float: right;">更多>></a></p1>
+			</div>
+			<div>
+				<ul>
+					<li style="margin-left: 2.625rem;" v-for="value in textData">{{value}}</li>
+				</ul>
+			</div>
+		</div>
+	
+	</div>
+	
+	
+</div>
+<!-- <div style="flex: 1;" id = "tab" class="c">
+ <ul style="background-color: #c8c6bc;" >
+ <li class="off">招聘信息</li>
+ <li class="on">实习实训信息</li>
+
+<p1 style="float: right;"><a href="#"> 更多>></a></p1>
+ </ul>
+<div id="firstPage" class="hide">
+	 <a href = "#">4.flex-flow（属性是 flex-direction 属性和 flex-wrap 属性的简写形式，默认值为row nowrap）
+5. justify-content（设置或检索弹性盒子元素在主轴（横轴）方向上的对齐方式）
+      flex-start（ 默认值、弹性盒子元素将向行起始位置对齐）
+      flex-end（弹性盒子元素将向行结束位置对齐）
+  
+
+</a><br/>
+	 <a href = "#"> 7.align-content（设置或检索弹性盒堆叠伸缩行的对齐方式）
+      flex-start（各行向弹性盒容器的起始位置堆叠。弹性盒容器中第一行的侧轴起始边界紧靠住该弹性盒容器的侧轴起始边界，之后的每一行都紧靠住前面一行）
+      flex-end（各行向弹性盒容器的结束位置堆叠。弹性盒容器中最后一行的侧轴起结束界紧靠住该弹性盒容器的侧轴结束边界，之后的每一行都紧靠住前面一行）</a><br/>
+	<a href = "#"> 6.align-items（设置或检索弹性盒子元素在侧轴（纵轴）方向上的对齐方式）
+      flex-start（弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴起始边界）
+      flex-end（弹性盒子元素的侧轴（纵轴）起始位置的边界紧靠住该行的侧轴结束边界）
+      center（ 弹性盒子元素在该行的侧轴（纵轴）上居中放置。（如果该行的尺寸小于弹性盒子元素的尺寸，则会向两个方向溢出相同的长度））
+      baseline（如弹性盒子元素的行内轴与侧轴为同一条，则该值与flex-start等效。其它情况下，该值将参与基线对齐。）
+      stretch（如果指定侧轴大小的属性值为'auto'，则其值会使项目的边距盒的尺寸尽可能接近所在行的尺寸，但同时会遵照'min/max-width/height'属性的限制）</a><br/>
+	<a href = "#">      center（弹性盒子元素将向行中间位置对齐。该行的子元素将相互对齐并在行中居中对齐）
+      space-between（弹性盒子元素会平均地分布在行里）
+      space-around（弹性盒子元素会平均地分布在行里，两端保留子元素与子元素之间间距大小的一半）</a><br/>
+</div>
+<div id="secondPage" class="show">
+	 <a href = "#">1.order（默认情况下flex order会按照书写顺训呈现，可以通过order属性改变，数值小的在前面，还可以是负数）
+ </a><br/>
+	 
+	 <a href = "#">2.flex-grow（设置或检索弹性盒的扩展比率,根据弹性盒子元素所设置的扩展因子作为比率来分配剩余空间）
+3.flex-shrink（设置或检索弹性盒的收缩比率,根据弹性盒子元素所设置的收缩因子作为比率来收缩空间）</a><br/>
+	 <a href = "#">4.flex-basis (设置或检索弹性盒伸缩基准值，如果所有子元素的基准值之和大于剩余空间，则会根据每项设置的基准值，按比率伸缩剩余空间)
+5.flex   (flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选)
+</a><br/>
+<a href = "#">6.align-self  (设置或检索弹性盒子元素在侧轴（纵轴）方向上的对齐方式，可以覆盖父容器align-items的设置)</a><br/>
+</div>
+<div id="thirdPage" class = "hide">
+
+</div>
+</div> -->
+
+<div>
+<div style="width: 6.25rem;background: #BBBBBB;
+margin-left: 0.125rem;
+background-color: #F0F8FF;
+height: 2rem;
+width: 12.5rem;
+ /* div四周加边框 */
+ border-top:0.125rem solid #000000;
+ border-left: 0.125rem solid #000000;
+ border-right: 0.125rem solid #000000;
+ border: #000000 solid 0.125rem;
+ border-bottom: #F7F7F7 solid 0.125rem;
+
+">
+<p1>新闻动态</p1>
+<p1>
+<a style="float: right; text-align: center;" href="#">更多>></a>
+</p1>
+</div>
+<div style="background-color: white;
+height: 13rem;
+width:12.5rem;
+margin-left: 0.125rem;
+
+/* div四周加边框 */
+border: solid 0.125rem #000000;
+border-right:0.125rem solid #000000;
+border-left: 0.125rem solid #000000;
+border-bottom: 0.125rem solid #000000;
+;">
+
+
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; justify-items: center; justify-content: space-around; 
+width: 98rem;background: #aeddf7; margin-top: 7.25rem; margin-left: 0.85rem; height: 10.125rem;">
+
+
+<div style="width:19rem; text-align: center;">
+<a href="#">
+<div  style="width: 100%;">
+<img src="./image/就业政策法规.png"  height="100px" />
+</div>
+<span style="font-size: 20px;">就业政策法规</span>
+</a>
+</div>
+
+
+<div style="width:19rem; text-align: center;">
+<a href="#">
+<div  style="width: 100%;">
+<img src="./image/职业测评.png"  height="100px" />
+</div>
+<span style="font-size: 20px;">职业测评</span>
+</a>
+</div>
+<div style="width:19rem; text-align: center;">
+<a href="#">
+<div  style="width: 100%;">
+<img src="./image/咨询预约.png"  height="100px" />
+</div>
+<span style="font-size: 20px;">咨询预约</span>
+</a>
+</div>
+<div style="width:19rem; text-align: center;">
+<a href="#">
+<div  style="width: 100%;">
+<img src="./image/创业政策.png"  height="100px" />
+</div>
+<span style="font-size: 20px;">创业政策</span>
+</a>
+</div>
+<div style="width:19rem; text-align: center;">
+<a href="#">
+<div  style="width: 100%;">
+<img src="./image/技巧分析.png"  height="100px" />
+</div>
+<span style="font-size: 20px;">技巧分析</span>
+</a>
+</div>
+
+
+</div>
+<!--  //利用设置大盒子的高度小。盒子中的盒子高度大于大盒子，可以使得下一行的距离就按照大盒子的高度就行了 -->
+<div style=" margin-left: 1.625rem; height: 17rem;  width: 17.5rem; background-color: #ff00;	">
+	<div style="background: #BBBBBB;
+margin-left: 0.125rem;
+background-color: #F0F8FF;
+height: 2rem;
+width: 17.5rem;
+margin-top: 7.25rem;
+border-top: 0.125rem solid #000000;
+border-left: 0.125rem solid #000000;
+border-right: 0.125rem solid #000000;
+/* 加边框阴影的 */">
+<p1>下载专区</p1>
+<p1 style="float: right;" >
+	<a href="#"> 更多>></a>
+</p1>
+
+	</div>
+	<div style="background-color: white;
+height: 18rem;
+width:17.5rem;
+margin-left: 0.125rem;
+/* brorder:2px solid #f7f7f7; */
+
+/* div四周加边框 */
+border: solid 0.125rem #000000;
+border-right:0.125rem solid #000000;
+border-left: 0.125rem solid #000000;
+border-bottom: 0.125rem solid #000000;
+">
+	</div>
+	</div>
+	
+	
+	
+
+	<div>
+<div  style="background-color: #F0F8FF;
+height: 2rem;
+width: 12.5rem;	
+margin-left: 0.3125rem;
+border-top: 0.125rem solid #000000;
+border-left: 0.125rem solid #000000;
+border-right: 0.125rem solid #000000;">
+
+<p1>重要通知</p1>
+<p1><a href="#" style="float: right;">更多>></a></p1>
+</div>
+<div style="width: 12.5rem; height: 10rem;
+margin-left: 0.3125rem;
+border:  #000000 solid 0.125rem;
+border-top: solid 0.125rem white;">
+
+</div>
+</div>
+
+<div  style="margin-left: 0.4125rem; border: #000000 solid 0.125rem; height: 12rem; ">
+<div  style="display: flex; align-content: stretch; flex-wrap: wrap; justify-content: space-around;
+height: 2.53rem; width: 98rem; background-color:#4169E1;">
+<div style=" background-color: #4169E1; height: 100%; border-bottom: #4169E1 solid 0.225rem; " >
+<button v-bind:class="is1?'button2':''" style=" margin: 0.125rem;  width: 24rem; font-size: 2rem;" type="button" v-on:click="Click1">宣讲会信息</button>
+<button v-bind:class="is2?'button2':''" style=" margin: 0.125rem;  width: 24rem; font-size: 2rem;" type="button" v-on:click="Click2">招聘会信息</button>
+<button v-bind:class="is3?'button2':''" style=" margin: 0.125rem;  width: 24rem; font-size: 2rem;" type="button" v-on:click="Click3">专场招聘会</button>
+<button v-bind:class="is4?'button2':''" style=" margin: 0.125rem;  width: 24rem; font-size: 2rem;" type="button" v-on:click="Click4">笔试面试名单</button>
+
+
+
+
+</div>
+
+</div>
+<div v-for="value in textArr" >
+<span>{{value}}</span>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+<script>
+var app=new Vue({
+el:"#app",
+data:{
+is1:false,
+is2:false,
+is3:false,
+is4:false,
+buttonArr:["宣讲会信息","招聘会信息","专场招聘会","笔试面试名单"],
+textArr:["吴清警察\n吴清警","吴清警察","吴清警察","吴清警察","吴清警察","吴清警察"],
+textData:["吴清警察\n吴清警","吴清警察","吴清警察","吴清警察","吴清警察","吴清警察"]
+
+},
+methods:{
+Click1:function(){
+this.textArr=["宣讲会信息"];
+this.is1=true;
+this.is2=false;
+this.is3=false;
+this.is4=false;
+console.log(value)
+},
+Click2:function(){
+this.textArr=["招聘会信息"];
+this.is2=true;
+this.is1=false;
+
+this.is3=false;
+this.is4=false;
+console.log(value)
+},
+Click3:function(){
+this.textArr=["专场招聘会"];
+this.is3=true;
+this.is1=false;
+this.is2=false;
+
+this.is4=false;
+console.log(value)
+},
+Click4:function(	){
+this.textArr=["笔试面试名单"];
+this.is4=true;
+this.is1=false;
+this.is2=false;
+this.is3=false;
+
+
+},
+Click5:function(){
+	console.log("Click5")
+
+	axios.get("https://autumnfish.cn/api/joke/list?num=6").then(response=>{
+		console.log(response.data.jokes)
+			this.textData=response.data.jokes
+	});
+},
+Click6:function(){ 
+	axios.get("https://autumnfish.cn/api/joke/list?num=6").then(response=>{
+		console.log(response.data.jokes)
+			this.textData=response.data.jokes
+	});
+}
+}
+}) 
+
+</script>
+</body>
+</html>
