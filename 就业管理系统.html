@@ -130,7 +130,16 @@ background: #00aaff;
 margin: 0.125rem;  width: 24rem; font-size: 2rem;
 }
 
-
+/* CSS样式制作 */  
+*{padding:0px; margin:0px;}
+a{ text-decoration:none; color:black;}  //消除链接的下划线
+a:hover{text-decoration:none; color:#ffffff;}
+#tab{width:111.2rem; padding:5px;height:300px;}/* 这个是选项卡上面那个线的长度的 *//* height:350px;这个设置第三个模块距离上面的距离的 */
+#tab ul{list-style:none; display:;height:30px;line-height:30px; }
+#tab ul li{background:#c8c6bc;cursor:pointer;float:left;list-style:none height:29px; line-height:29px;padding:0px 10px; margin:0px 10px; }/*这个是可以添加下边框的线   border-bottom:1px solid #ffffff*/
+#tab ul li.on{border-top:2px solid red; background-color: #2e87d7; border-bottom:2px solid #FFF ;}/*选中的选项卡的颜色*/
+#tab div{height: 20rem;;width:118rem; line-height:24px;border-top:none;  padding:1px; border:1px solid #336699;padding:10px;}/* 设置选项卡的样式的 */
+.hide{display:none;}
 </style>
 <!-- <script type="text/javascript">
 // JS实现选项卡切换
